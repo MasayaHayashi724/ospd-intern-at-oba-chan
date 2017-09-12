@@ -13,6 +13,8 @@
 		578C41E91F67C7A700F2C4BC /* ospd_intern_at_oba_chan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 578C41E71F67C7A700F2C4BC /* ospd_intern_at_oba_chan.xcdatamodeld */; };
 		578C41EB1F67C7A700F2C4BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 578C41EA1F67C7A700F2C4BC /* Assets.xcassets */; };
 		578C41EE1F67C7A700F2C4BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578C41EC1F67C7A700F2C4BC /* LaunchScreen.storyboard */; };
+		578C41FB1F67CA3800F2C4BC /* Timeline.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 578C41FA1F67CA3800F2C4BC /* Timeline.storyboard */; };
+		578C41FD1F67CA7100F2C4BC /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578C41FC1F67CA7100F2C4BC /* TimelineViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		578C41EA1F67C7A700F2C4BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		578C41ED1F67C7A700F2C4BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		578C41EF1F67C7A700F2C4BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		578C41FA1F67CA3800F2C4BC /* Timeline.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Timeline.storyboard; sourceTree = "<group>"; };
+		578C41FC1F67CA7100F2C4BC /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				578C41EC1F67C7A700F2C4BC /* LaunchScreen.storyboard */,
 				578C41EF1F67C7A700F2C4BC /* Info.plist */,
 				578C41E71F67C7A700F2C4BC /* ospd_intern_at_oba_chan.xcdatamodeld */,
+				578C41FA1F67CA3800F2C4BC /* Timeline.storyboard */,
+				578C41FC1F67CA7100F2C4BC /* TimelineViewController.swift */,
 			);
 			path = "ospd-intern-at-oba-chan";
 			sourceTree = "<group>";
@@ -128,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				578C41EE1F67C7A700F2C4BC /* LaunchScreen.storyboard in Resources */,
+				578C41FB1F67CA3800F2C4BC /* Timeline.storyboard in Resources */,
 				578C41EB1F67C7A700F2C4BC /* Assets.xcassets in Resources */,
 				578C41E61F67C7A700F2C4BC /* Main.storyboard in Resources */,
 			);
@@ -141,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				578C41E31F67C7A700F2C4BC /* ViewController.swift in Sources */,
+				578C41FD1F67CA7100F2C4BC /* TimelineViewController.swift in Sources */,
 				578C41E91F67C7A700F2C4BC /* ospd_intern_at_oba_chan.xcdatamodeld in Sources */,
 				578C41E11F67C7A700F2C4BC /* AppDelegate.swift in Sources */,
 			);
@@ -306,6 +314,7 @@
 				578C41F41F67C7A700F2C4BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
