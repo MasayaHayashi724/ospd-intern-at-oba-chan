@@ -52,12 +52,35 @@ class TimelineViewController: UIViewController {
         for account in accounts {
             alert.addAction(UIAlertAction(title: account.username, style: .default, handler: { _ in
                 self.twitterAccount = account
+                self.getTimeline()
             }))
         }
 
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
         self.present(alert, animated: true, completion: nil)
+    }
+
+    private func getTimeline() {
+        let url = URL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json")!
+
+        guard let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .GET, url: url, parameters: nil) else { return }
+
+        request.account = twitterAccount
+
+        request.perform { (data, response, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let data = data else { return }
+            do {
+                let result = try JSONSerialization.jsonObject(with: data, options: [])
+                print("result is \(result)")
+            } catch {
+                print("Failed to parse json")
+            }
+        }
     }
 
 }
