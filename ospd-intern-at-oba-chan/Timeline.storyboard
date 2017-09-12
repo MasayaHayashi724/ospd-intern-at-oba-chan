@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RPr-eE-F0W">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -38,6 +38,9 @@
                             <constraint firstItem="GQb-Iu-Vnc" firstAttribute="leading" secondItem="xfn-JI-nCH" secondAttribute="leading" id="tcm-y0-Im2"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="timelineTableView" destination="GQb-Iu-Vnc" id="hgR-2P-flc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7D1-Aw-O2P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
