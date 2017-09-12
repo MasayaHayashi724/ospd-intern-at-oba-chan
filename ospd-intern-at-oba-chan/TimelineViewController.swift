@@ -83,6 +83,32 @@ class TimelineViewController: UIViewController {
         }
     }
 
+    @IBAction func takePhotoButtonTapped(_ sender: Any) {
+        postTweet()
+    }
+
+    private func postTweet() {
+        let url = URL(string: "https://api.twitter.com/1.1/statuses/update.json")!
+        let params = ["status": "Yeah"]
+
+        guard let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .POST, url: url, parameters: params) else { return }
+
+        request.account = twitterAccount
+
+        request.perform { (data, response, error) in
+            if let error = error {
+                print(error)
+            }
+            guard let data = data else { return }
+            do {
+                let result = try JSONSerialization.jsonObject(with: data, options: [])
+                print("result is \(result)")
+            } catch {
+                print("Failed to parse json")
+            }
+        }
+    }
+
 }
 
 extension TimelineViewController: UITableViewDataSource {
