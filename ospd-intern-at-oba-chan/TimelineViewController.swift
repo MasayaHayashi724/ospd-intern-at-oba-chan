@@ -103,8 +103,6 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             postTweet(data: pickedImage)
         }
-        
-        //閉じる処理
         imagePicker.dismiss(animated: true, completion: nil)
     }
 
@@ -112,8 +110,7 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
-    
+
     private func postTweet(data: UIImage) {
         let url = URL(string: "https://upload.twitter.com/1.1/media/upload.json")!
         let imageData = UIImageJPEGRepresentation(data, 1.0)
