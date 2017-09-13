@@ -24,10 +24,6 @@ class TimelineViewController: UIViewController {
         selectTwitterAccount()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     private func selectTwitterAccount() {
         let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
 
