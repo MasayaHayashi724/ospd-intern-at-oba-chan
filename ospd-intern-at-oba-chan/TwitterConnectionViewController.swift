@@ -17,6 +17,10 @@ class TwitterConnectionViewController: UIViewController {
     }
 
     @IBAction func twitterConnectionButtonTapped(_ sender: Any) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "Web") as! WebViewController
+        vc.url = twitterConnectionUrl
+        present(vc, animated: true, completion: nil)
     }
 
 }
