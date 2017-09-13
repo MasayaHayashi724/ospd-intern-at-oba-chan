@@ -14,14 +14,21 @@ import SwiftyJSON
 class TimelineViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet weak var timelineTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var accountStore = ACAccountStore()
     var twitterAccount: ACAccount?
     var tweets = [Tweet]()
+
+    var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         selectTwitterAccount()
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(getTimeline), for: .valueChanged)
+        timelineTableView.addSubview(refreshControl)
+        activityIndicator.hidesWhenStopped = true
     }
     
     private func selectTwitterAccount() {
@@ -63,7 +70,7 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func getTimeline() {
+    func getTimeline() {
         let url = URL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json")!
         
         guard let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .GET, url: url, parameters: nil) else { return }
@@ -85,6 +92,7 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
                 self.tweets.append(tw)
             }
             self.timelineTableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
     }
     
@@ -112,6 +120,7 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     }
 
     private func postTweet(data: UIImage) {
+        activityIndicator.startAnimating()
         let url = URL(string: "https://upload.twitter.com/1.1/media/upload.json")!
         let imageData = UIImageJPEGRepresentation(data, 1.0)
 
@@ -122,6 +131,7 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
         request.perform { (data, response, error) in
             if let error = error {
                 print(error)
+                self.activityIndicator.stopAnimating()
                 return
             }
             guard let data = data else { return }
@@ -140,10 +150,12 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
         request.perform { (data, res, err) in
             if let err = err {
                 print(err)
+                self.activityIndicator.stopAnimating()
                 return
             }
             guard let data = data else { return }
             print(data)
+            self.activityIndicator.stopAnimating()
         }
     }
 
@@ -159,6 +171,7 @@ extension TimelineViewController: UITableViewDataSource {
         let cell = timelineTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TweetTableViewCell
         let tweet = tweets[indexPath.row]
         cell.configure(tweet: tweet)
+        cell.selectionStyle = .none
         return cell
     }
 
