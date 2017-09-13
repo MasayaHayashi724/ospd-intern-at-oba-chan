@@ -20,6 +20,7 @@
 		578C42051F68B84C00F2C4BC /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 578C42041F68B84C00F2C4BC /* SwiftyJSON.framework */; };
 		578C42061F68B84C00F2C4BC /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 578C42041F68B84C00F2C4BC /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		578C42091F68C1A400F2C4BC /* UIImageView+Oba-chan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578C42081F68C1A400F2C4BC /* UIImageView+Oba-chan.swift */; };
+		57B3B1FF1F6936B7005521A7 /* TwitterConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B3B1FE1F6936B7005521A7 /* TwitterConnectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +52,7 @@
 		578C42021F68B1F500F2C4BC /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		578C42041F68B84C00F2C4BC /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		578C42081F68C1A400F2C4BC /* UIImageView+Oba-chan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Oba-chan.swift"; sourceTree = "<group>"; };
+		57B3B1FE1F6936B7005521A7 /* TwitterConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterConnectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				578C41FE1F67EB4700F2C4BC /* TweetTableViewCell.swift */,
 				578C42021F68B1F500F2C4BC /* Tweet.swift */,
 				578C42081F68C1A400F2C4BC /* UIImageView+Oba-chan.swift */,
+				57B3B1FE1F6936B7005521A7 /* TwitterConnectionViewController.swift */,
 			);
 			path = "ospd-intern-at-oba-chan";
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 			files = (
 				578C41E31F67C7A700F2C4BC /* ViewController.swift in Sources */,
 				578C41FD1F67CA7100F2C4BC /* TimelineViewController.swift in Sources */,
+				57B3B1FF1F6936B7005521A7 /* TwitterConnectionViewController.swift in Sources */,
 				578C41E91F67C7A700F2C4BC /* ospd_intern_at_oba_chan.xcdatamodeld in Sources */,
 				578C42031F68B1F500F2C4BC /* Tweet.swift in Sources */,
 				578C41FF1F67EB4700F2C4BC /* TweetTableViewCell.swift in Sources */,

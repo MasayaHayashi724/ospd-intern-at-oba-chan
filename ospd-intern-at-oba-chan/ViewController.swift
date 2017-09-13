@@ -60,7 +60,10 @@ class ViewController: UIViewController {
     }
 
     private func moveToTwitterConnectionVC(url: URL) {
-        // TODO: Twitter連携するためのVCにurlを渡して遷移する
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "TwitterConnection") as! TwitterConnectionViewController
+        vc.twitterConnectionUrl = url
+        present(vc, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
