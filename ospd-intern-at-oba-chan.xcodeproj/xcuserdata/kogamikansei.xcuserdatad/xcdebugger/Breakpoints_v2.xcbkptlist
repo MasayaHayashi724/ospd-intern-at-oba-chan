@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ospd-intern-at-oba-chan/ViewController.swift"
-            timestampString = "526904608.281766"
+            timestampString = "526959645.193185"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "coopTwitter(_:)"
             landmarkType = "7">
          </BreakpointContent>
