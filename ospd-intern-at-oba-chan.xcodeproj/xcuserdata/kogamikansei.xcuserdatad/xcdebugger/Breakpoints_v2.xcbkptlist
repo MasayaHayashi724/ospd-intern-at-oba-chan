@@ -19,5 +19,69 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ospd-intern-at-oba-chan/TimelineViewController.swift"
+            timestampString = "526977874.125871"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "postTweet(data:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ospd-intern-at-oba-chan/TimelineViewController.swift"
+            timestampString = "526977875.346829"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "postTweet(data:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ospd_intern_at_oba_chan.TimelineViewController.(postTweet in _880434B20437B68018207336CC2A5496) (data : __ObjC.UIImage) -&gt; ()"
+                  moduleName = "ospd-intern-at-oba-chan"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kogamikansei/Develop/Rakuten-intern/ospd-intern-at-oba-chan/ospd-intern-at-oba-chan/TimelineViewController.swift"
+                  timestampString = "526977875.572244"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
+                  offsetFromSymbolStart = "1136">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ospd_intern_at_oba_chan.TimelineViewController.((postTweet in _880434B20437B68018207336CC2A5496) (data : __ObjC.UIImage) -&gt; ()).(closure #1)"
+                  moduleName = "ospd-intern-at-oba-chan"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kogamikansei/Develop/Rakuten-intern/ospd-intern-at-oba-chan/ospd-intern-at-oba-chan/TimelineViewController.swift"
+                  timestampString = "526977875.574326"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "159"
+                  endingLineNumber = "159"
+                  offsetFromSymbolStart = "164">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

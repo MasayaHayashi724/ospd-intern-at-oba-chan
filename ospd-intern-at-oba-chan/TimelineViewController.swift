@@ -18,7 +18,7 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     var accountStore = ACAccountStore()
     var twitterAccount: ACAccount?
     var tweets = [Tweet]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         selectTwitterAccount()
@@ -105,18 +105,18 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
         }
     }
     
-        //撮影が完了時した時に呼ばれる
-        func imagePickerController(_ imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-    
-           if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-//                cameraView.contentMode = .scaleAspectFit
-//                cameraView.image = pickedImage
-                postTweet(image: pickedImage)
-    
-            }
-    
-            //閉じる処理
-            imagePicker.dismiss(animated: true, completion: nil)
+    //撮影が完了時した時に呼ばれる
+    func imagePickerController(_ imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            //                cameraView.contentMode = .scaleAspectFit
+            //                cameraView.image = pickedImage
+            postTweet(data: pickedImage)
+            
+        }
+        
+        //閉じる処理
+        imagePicker.dismiss(animated: true, completion: nil)
     }
     
     
@@ -126,27 +126,55 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     
-            private func postTweet(image: UIImage) {
-        let url = URL(string: "https://api.twitter.com/1.1/statuses/update.json")!
-        let params = ["status": "Yeah"]
+    private func postTweet(data: UIImage) {
+//        
+//        let twitterPostView: SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)!
+//        twitterPostView.add(data)
+//        
+//        
+//        self.present(twitterPostView, animated: true, completion: nil)
+
         
-        guard let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .POST, url: url, parameters: params) else { return }
+        
+        let url = URL(string: "https://api.twitter.com/1.1/media/upload.json")!
+      
+        let imageData = UIImageJPEGRepresentation(data, 1.0)
+        
+        //let im: String = imageData!.base64EncodedStringWithOptions(NSData.Base64EncodingOptions.Encoding64CharacterLineLength)
+   //     let im: String = imageData!.base64EncodedStringWithOptions([])
+//        let params = ["image": im]
+
+        
+        guard let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .POST, url: url, parameters: nil) else { return }
         
         request.account = twitterAccount
         
-        request.perform { (data, response, error) in
-            if let error = error {
-                print(error)
-            }
-            guard let data = data else { return }
-            do {
-                let result = try JSONSerialization.jsonObject(with: data, options: [])
-                print("result is \(result)")
-            } catch {
-                print("Failed to parse json")
-            }
+        request.addMultipartData(imageData, withName: "media", type: "image/jpeg", filename: "image.jpeg")
+        
+         request.perform { (data, response, error) in
+            
+            var responseData = JSON(data)
+        
+            
         }
+        
+//        request.perform { (data, response, error) in
+//            if let error = error {
+//                print(error)
+//            }
+//            guard let data = data else { return }
+//            do {
+//                let result = try JSONSerialization.jsonObject(with: data, options: [])
+//                print("result is \(result)")
+//                
+//                
+//            } catch {
+//                print("Failed to parse json")
+//            }
+//        }
     }
+    
+    
     
     
     override func didReceiveMemoryWarning() {
