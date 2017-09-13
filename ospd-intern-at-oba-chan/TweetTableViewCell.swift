@@ -14,6 +14,12 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var pictureImageView: UIImageView!
 
+    func configure(tweet: Tweet) {
+        iconImageView.load(from: tweet.iconImageUrl)
+        userNameLabel.text = tweet.userName
+        pictureImageView.load(from: tweet.imageUrl)
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }

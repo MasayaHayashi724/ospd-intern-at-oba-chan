@@ -9,6 +9,7 @@
 import UIKit
 import Social
 import Accounts
+import SwiftyJSON
 
 class TimelineViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
@@ -16,7 +17,8 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     
     var accountStore = ACAccountStore()
     var twitterAccount: ACAccount?
-    
+    var tweets = [Tweet]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         selectTwitterAccount()
@@ -74,12 +76,15 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
                 return
             }
             guard let data = data else { return }
-            do {
-                let result = try JSONSerialization.jsonObject(with: data, options: [])
-                print("result is \(result)")
-            } catch {
-                print("Failed to parse json")
+            let tweets = JSON(data: data)
+            for tweet in tweets.array! {
+                guard let userName = tweet["user"]["name"].string else { continue }
+                guard let profileImageUrl = tweet["user"]["profile_image_url"].string else { continue }
+                guard let mediaUrl = tweet["entities"]["media"][0]["media_url"].string else { continue }
+                let tw = Tweet(userName: userName, iconImageUrlString: profileImageUrl, imageUrlString: mediaUrl)
+                self.tweets.append(tw)
             }
+            self.timelineTableView.reloadData()
         }
     }
     
@@ -154,11 +159,14 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
 extension TimelineViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return tweets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = timelineTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TweetTableViewCell
+        let tweet = tweets[indexPath.row]
+        cell.configure(tweet: tweet)
+        return cell
     }
     
 }
