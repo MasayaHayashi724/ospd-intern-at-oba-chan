@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class ViewController: UIViewController {
 
+    private let host = "http://localhost:3000"
     
     @IBOutlet weak var twitterID: UITextField!
     @IBOutlet weak var phoneNum: UITextField!
@@ -26,15 +28,42 @@ class ViewController: UIViewController {
     }
 
     private func postInfoToDB() {
-        // TODO: twitterIDなどをDBに保存するAPIを叩く
+        guard let screenName = twitterID.text else { return }
+        guard let email = phoneNum.text else { return }
+        guard !screenName.isEmpty && !email.isEmpty else { return }
+        let url = URL(string: "\(host)/api/users?screen_name=\(screenName)&email=\(email)")!
+        var req = URLRequest(url: url)
+        req.httpMethod = "POST"
+        URLSession.shared.dataTask(with: req) { (data, res, err) in
+            if let err = err {
+                print(err)
+                return
+            }
+            guard let data = data else { return }
+            print(data)
+        }.resume()
     }
 
     private func getUrlForConnectingTwitter() {
-        // TODO: Twitter連携用のURLを取得してurltwitterConnectionUrlに代入
+        let url = URL(string: "\(host)/api/twitter")!
+        let req = URLRequest(url: url)
+        URLSession.shared.dataTask(with: req) { (data, res, err) in
+            if let err = err {
+                print(err)
+                return
+            }
+            guard let data = data else { return }
+            let json = JSON(data: data)
+            guard let url = json["response"]["url"].url else { return }
+            self.twitterConnectionUrl = url
+        }.resume()
     }
 
     private func moveToTwitterConnectionVC(url: URL) {
-        // TODO: Twitter連携するためのVCにurlを渡して遷移する
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "TwitterConnection") as! TwitterConnectionViewController
+        vc.twitterConnectionUrl = url
+        self.present(vc, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {

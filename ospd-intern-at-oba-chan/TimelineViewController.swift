@@ -29,6 +29,7 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
         refreshControl.addTarget(self, action: #selector(getTimeline), for: .valueChanged)
         timelineTableView.addSubview(refreshControl)
         activityIndicator.hidesWhenStopped = true
+        // TODO: 若者のアクセストークンを使ってタイムライン取得してtweetsにくっつける
     }
     
     private func selectTwitterAccount() {
