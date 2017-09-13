@@ -63,7 +63,7 @@ class ViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "TwitterConnection") as! TwitterConnectionViewController
         vc.twitterConnectionUrl = url
-        present(vc, animated: true, completion: nil)
+        self.present(vc, animated: true, completion: nil)
     }
 
     override func viewDidLoad() {

@@ -20,7 +20,7 @@ class TwitterConnectionViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Web") as! WebViewController
         vc.url = twitterConnectionUrl
-        present(vc, animated: true, completion: nil)
+        self.present(vc, animated: true, completion: nil)
     }
 
 }

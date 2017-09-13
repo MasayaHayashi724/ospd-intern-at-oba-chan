@@ -24,7 +24,7 @@ class WebViewController: UIViewController {
     @IBAction func doneButtonTapped(_ sender: Any) {
         let sb = UIStoryboard(name: "Timeline", bundle: nil)
         let vc = sb.instantiateInitialViewController() as! TimelineViewController
-        present(vc, animated: true, completion: nil)
+        self.present(vc, animated: true, completion: nil)
     }
 
 }
