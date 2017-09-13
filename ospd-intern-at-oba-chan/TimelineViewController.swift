@@ -90,7 +90,7 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func takePhotoButtonTapped(_ sender: Any) {
         let sourceType = UIImagePickerControllerSourceType.camera
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
             let cameraPicker = UIImagePickerController()
             cameraPicker.sourceType = sourceType
             cameraPicker.delegate = self
@@ -100,19 +100,14 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     
     //撮影が完了時した時に呼ばれる
     func imagePickerController(_ imagePicker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            //                cameraView.contentMode = .scaleAspectFit
-            //                cameraView.image = pickedImage
             postTweet(data: pickedImage)
-            
         }
         
         //閉じる処理
         imagePicker.dismiss(animated: true, completion: nil)
     }
-    
-    
+
     // 撮影がキャンセルされた時に呼ばれる
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
@@ -120,74 +115,54 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     
     
     private func postTweet(data: UIImage) {
-//        
-//        let twitterPostView: SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)!
-//        twitterPostView.add(data)
-//        
-//        
-//        self.present(twitterPostView, animated: true, completion: nil)
-
-        
-        
-        let url = URL(string: "https://api.twitter.com/1.1/media/upload.json")!
-      
+        let url = URL(string: "https://upload.twitter.com/1.1/media/upload.json")!
         let imageData = UIImageJPEGRepresentation(data, 1.0)
-        
-        //let im: String = imageData!.base64EncodedStringWithOptions(NSData.Base64EncodingOptions.Encoding64CharacterLineLength)
-   //     let im: String = imageData!.base64EncodedStringWithOptions([])
-//        let params = ["image": im]
 
-        
         guard let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .POST, url: url, parameters: nil) else { return }
-        
         request.account = twitterAccount
-        
         request.addMultipartData(imageData, withName: "media", type: "image/jpeg", filename: "image.jpeg")
-        
-         request.perform { (data, response, error) in
-            
-            var responseData = JSON(data)
-        
-            
+
+        request.perform { (data, response, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            guard let data = data else { return }
+            let json = JSON(data: data)
+            guard let mediaIdString = json["media_id_string"].string else { return }
+            self.postMediaToTwitter(mediaIdString: mediaIdString)
         }
-        
-//        request.perform { (data, response, error) in
-//            if let error = error {
-//                print(error)
-//            }
-//            guard let data = data else { return }
-//            do {
-//                let result = try JSONSerialization.jsonObject(with: data, options: [])
-//                print("result is \(result)")
-//                
-//                
-//            } catch {
-//                print("Failed to parse json")
-//            }
-//        }
     }
-    
-    
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    func postMediaToTwitter(mediaIdString: String) {
+        let url = URL(string: "https://api.twitter.com/1.1/statuses/update.json")!
+        let parameters = ["media_ids": mediaIdString]
+        guard let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .POST, url: url, parameters: parameters) else { return }
+        request.account = twitterAccount
+
+        request.perform { (data, res, err) in
+            if let err = err {
+                print(err)
+                return
+            }
+            guard let data = data else { return }
+            print(data)
+        }
     }
-    
+
 }
 
 extension TimelineViewController: UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = timelineTableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TweetTableViewCell
         let tweet = tweets[indexPath.row]
         cell.configure(tweet: tweet)
         return cell
     }
-    
+
 }
