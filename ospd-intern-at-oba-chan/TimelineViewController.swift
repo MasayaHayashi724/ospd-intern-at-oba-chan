@@ -89,19 +89,12 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     
     @IBAction func takePhotoButtonTapped(_ sender: Any) {
-        //カメラを起動する
-        let sourceType:UIImagePickerControllerSourceType = UIImagePickerControllerSourceType.camera
-        // カメラが利用可能かチェック
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
-            // インスタンスの作成
+        let sourceType = UIImagePickerControllerSourceType.camera
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
             let cameraPicker = UIImagePickerController()
             cameraPicker.sourceType = sourceType
             cameraPicker.delegate = self
             self.present(cameraPicker, animated: true, completion: nil)
-            
-        }
-        else{
-            
         }
     }
     
