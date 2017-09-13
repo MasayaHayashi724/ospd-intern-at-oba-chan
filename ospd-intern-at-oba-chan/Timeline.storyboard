@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="275"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r6u-sO-hwy" id="tV3-Kv-dM6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="274.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="275"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdh-cC-6Mb">
@@ -78,6 +78,9 @@
                                     <outlet property="delegate" destination="RPr-eE-F0W" id="why-5U-Cv7"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Qb5-mz-LPW">
+                                <rect key="frame" x="0.0" y="323" width="375" height="20"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8U-JK-C4f">
                                 <rect key="frame" x="16" y="587" width="343" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.99182273649999997" blue="0.71245613019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -95,6 +98,8 @@
                             <constraint firstItem="GQb-Iu-Vnc" firstAttribute="top" secondItem="wBb-Yd-fYQ" secondAttribute="bottom" id="AsM-tC-oor"/>
                             <constraint firstItem="dho-82-Gh8" firstAttribute="top" secondItem="F8U-JK-C4f" secondAttribute="bottom" constant="30" id="JCh-CF-Jww"/>
                             <constraint firstAttribute="trailing" secondItem="GQb-Iu-Vnc" secondAttribute="trailing" id="KIQ-z3-gKg"/>
+                            <constraint firstItem="Qb5-mz-LPW" firstAttribute="centerX" secondItem="xfn-JI-nCH" secondAttribute="centerX" id="WkM-B0-ybA"/>
+                            <constraint firstItem="Qb5-mz-LPW" firstAttribute="centerY" secondItem="xfn-JI-nCH" secondAttribute="centerY" id="Wlj-VN-NKC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="F8U-JK-C4f" secondAttribute="trailing" id="Z4L-On-vIj"/>
                             <constraint firstItem="F8U-JK-C4f" firstAttribute="leading" secondItem="xfn-JI-nCH" secondAttribute="leadingMargin" id="bKw-wJ-lHf"/>
                             <constraint firstItem="dho-82-Gh8" firstAttribute="top" secondItem="GQb-Iu-Vnc" secondAttribute="bottom" id="kCc-Ni-7qj"/>
@@ -102,6 +107,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Qb5-mz-LPW" id="yQz-f4-q9q"/>
                         <outlet property="timelineTableView" destination="GQb-Iu-Vnc" id="hgR-2P-flc"/>
                     </connections>
                 </viewController>
