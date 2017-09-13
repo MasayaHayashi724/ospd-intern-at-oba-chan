@@ -84,15 +84,19 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
             }
             guard let data = data else { return }
             let tweets = JSON(data: data)
+            var tweetsWithPicture = [Tweet]()
             for tweet in tweets.array! {
                 guard let userName = tweet["user"]["name"].string else { continue }
                 guard let profileImageUrl = tweet["user"]["profile_image_url"].string else { continue }
                 guard let mediaUrl = tweet["entities"]["media"][0]["media_url"].string else { continue }
                 let tw = Tweet(userName: userName, iconImageUrlString: profileImageUrl, imageUrlString: mediaUrl)
-                self.tweets.append(tw)
+                tweetsWithPicture.append(tw)
             }
-            self.timelineTableView.reloadData()
-            self.refreshControl.endRefreshing()
+            self.tweets = tweetsWithPicture
+            DispatchQueue.main.async {
+                self.timelineTableView.reloadData()
+                self.refreshControl.endRefreshing()
+            }
         }
     }
     
@@ -122,7 +126,7 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     private func postTweet(data: UIImage) {
         activityIndicator.startAnimating()
         let url = URL(string: "https://upload.twitter.com/1.1/media/upload.json")!
-        let imageData = UIImageJPEGRepresentation(data, 1.0)
+        guard let imageData = UIImageJPEGRepresentation(data, 0.5) else { return }
 
         guard let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .POST, url: url, parameters: nil) else { return }
         request.account = twitterAccount
@@ -131,7 +135,9 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
         request.perform { (data, response, error) in
             if let error = error {
                 print(error)
-                self.activityIndicator.stopAnimating()
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                }
                 return
             }
             guard let data = data else { return }
@@ -150,12 +156,17 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
         request.perform { (data, res, err) in
             if let err = err {
                 print(err)
-                self.activityIndicator.stopAnimating()
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                }
                 return
             }
             guard let data = data else { return }
             print(data)
-            self.activityIndicator.stopAnimating()
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+            }
+            self.getTimeline()
         }
     }
 
