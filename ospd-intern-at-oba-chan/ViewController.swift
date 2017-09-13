@@ -26,7 +26,20 @@ class ViewController: UIViewController {
     }
 
     private func postInfoToDB() {
-        // TODO: twitterIDなどをDBに保存するAPIを叩く
+        guard let screenName = twitterID.text else { return }
+        guard let email = phoneNum.text else { return }
+        guard !screenName.isEmpty && !email.isEmpty else { return }
+        let url = URL(string: "http://localhost:3000/api/users?screen_name=\(screenName)&email=\(email)")!
+        var req = URLRequest(url: url)
+        req.httpMethod = "POST"
+        URLSession.shared.dataTask(with: req) { (data, res, err) in
+            if let err = err {
+                print(err)
+                return
+            }
+            guard let data = data else { return }
+            print(data)
+        }
     }
 
     private func getUrlForConnectingTwitter() {
