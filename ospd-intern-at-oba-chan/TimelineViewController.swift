@@ -21,8 +21,6 @@ class TimelineViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        timelineTableView.estimatedRowHeight = 30
-//        timelineTableView.rowHeight = UITableViewAutomaticDimension
         selectTwitterAccount()
     }
 
