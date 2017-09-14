@@ -14,6 +14,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        guard let query = url.query else { return false }
+        if query.isEmpty { return false }
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let sb = UIStoryboard(name: "Timeline", bundle: nil)
+        let vc = sb.instantiateInitialViewController() as! TimelineViewController
+        vc.isObachan = true
+        window?.rootViewController = vc
+        window?.makeKeyAndVisible()
+        return true
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
