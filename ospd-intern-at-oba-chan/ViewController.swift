@@ -11,14 +11,16 @@ import SwiftyJSON
 
 class ViewController: UIViewController {
 
-    private let host = "http://localhost:3000"
+    private let host = "https://atobachan-team2ospd.c9users.io"
     
     @IBOutlet weak var twitterID: UITextField!
     @IBOutlet weak var phoneNum: UITextField!
 
     var twitterConnectionUrl: URL? {
         didSet {
-            moveToTwitterConnectionVC(url: twitterConnectionUrl!)
+            DispatchQueue.main.async {
+                self.moveToTwitterConnectionVC(url: self.twitterConnectionUrl!)
+            }
         }
     }
     
@@ -31,7 +33,8 @@ class ViewController: UIViewController {
         guard let screenName = twitterID.text else { return }
         guard let email = phoneNum.text else { return }
         guard !screenName.isEmpty && !email.isEmpty else { return }
-        let url = URL(string: "\(host)/api/users?screen_name=\(screenName)&email=\(email)")!
+        let encodedEmail = email.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        let url = URL(string: "\(host)/api/users?screen_name=\(screenName)&email=\(encodedEmail!)")!
         var req = URLRequest(url: url)
         req.httpMethod = "POST"
         URLSession.shared.dataTask(with: req) { (data, res, err) in
@@ -45,7 +48,8 @@ class ViewController: UIViewController {
     }
 
     private func getUrlForConnectingTwitter() {
-        let url = URL(string: "\(host)/api/twitter")!
+        guard let screenName = twitterID.text else { return }
+        let url = URL(string: "\(host)/api/twitter?screen_name=\(screenName)")!
         let req = URLRequest(url: url)
         URLSession.shared.dataTask(with: req) { (data, res, err) in
             if let err = err {
@@ -54,15 +58,17 @@ class ViewController: UIViewController {
             }
             guard let data = data else { return }
             let json = JSON(data: data)
-            guard let url = json["response"]["url"].url else { return }
+            guard let url = json["response"].url else { return }
             self.twitterConnectionUrl = url
         }.resume()
     }
 
     private func moveToTwitterConnectionVC(url: URL) {
+        guard let twitterID = twitterID.text else { return }
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "TwitterConnection") as! TwitterConnectionViewController
         vc.twitterConnectionUrl = url
+        vc.twitterID = twitterID
         self.present(vc, animated: true, completion: nil)
     }
 

@@ -11,6 +11,7 @@ import UIKit
 class TwitterConnectionViewController: UIViewController {
 
     var twitterConnectionUrl: URL?
+    var twitterID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,7 @@ class TwitterConnectionViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "Web") as! WebViewController
         vc.url = twitterConnectionUrl
+        vc.twitterID = twitterID
         self.present(vc, animated: true, completion: nil)
     }
 

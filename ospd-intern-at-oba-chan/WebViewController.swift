@@ -13,6 +13,7 @@ class WebViewController: UIViewController {
     @IBOutlet weak var webView: UIWebView!
 
     var url: URL?
+    var twitterID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class WebViewController: UIViewController {
     @IBAction func doneButtonTapped(_ sender: Any) {
         let sb = UIStoryboard(name: "Timeline", bundle: nil)
         let vc = sb.instantiateInitialViewController() as! TimelineViewController
+        vc.twitterID = twitterID
         self.present(vc, animated: true, completion: nil)
     }
 

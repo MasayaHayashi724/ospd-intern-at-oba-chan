@@ -12,6 +12,8 @@ import Accounts
 import SwiftyJSON
 
 class TimelineViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+
+    private let host = "https://atobachan-team2ospd.c9users.io"
     
     @IBOutlet weak var timelineTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -19,6 +21,13 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     var accountStore = ACAccountStore()
     var twitterAccount: ACAccount?
     var tweets = [Tweet]()
+    var twitterID: String?
+    var accessToken: String?
+    var accessTokenSecret: String? {
+        didSet {
+            getYouthTimeline()
+        }
+    }
 
     var refreshControl: UIRefreshControl!
     
