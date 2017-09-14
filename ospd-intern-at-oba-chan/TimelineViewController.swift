@@ -24,7 +24,7 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     var oldScreenName: String?
     var youngScreenName: String?
 
-    var isObachan: Bool = true //false
+    var isObachan: Bool = false
 
     var refreshControl: UIRefreshControl!
     
