@@ -61,32 +61,44 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="おばあちゃんのメールアドレス" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzw-cg-SAq">
-                                <rect key="frame" x="16" y="252" width="343" height="21"/>
+                                <rect key="frame" x="16" y="290" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="おばあちゃんのメールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NE2-Lt-cu0">
-                                <rect key="frame" x="16" y="281" width="343" height="30"/>
+                                <rect key="frame" x="16" y="319" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0RZ-4Z-j5x">
-                                <rect key="frame" x="297" y="327" width="62" height="30"/>
+                                <rect key="frame" x="297" y="365" width="62" height="30"/>
                                 <state key="normal" title="登録する"/>
                                 <connections>
                                     <action selector="coopTwitter:" destination="Ikg-in-FdV" eventType="touchUpInside" id="zfF-cP-iE5"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="おばあちゃんのTwitter ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lPa-K4-1q2">
-                                <rect key="frame" x="16" y="177" width="343" height="21"/>
+                                <rect key="frame" x="16" y="215" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="@..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i8I-Ic-AVA">
-                                <rect key="frame" x="16" y="206" width="343" height="30"/>
+                                <rect key="frame" x="16" y="244" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="あなたのTwitter ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMR-Dh-j4K">
+                                <rect key="frame" x="16" y="140" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="@..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3lD-ny-Y7n">
+                                <rect key="frame" x="16" y="169" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -97,22 +109,29 @@
                             <constraint firstItem="Gzw-cg-SAq" firstAttribute="trailing" secondItem="TPV-xI-Bdv" secondAttribute="trailingMargin" id="2Ft-52-NWT"/>
                             <constraint firstItem="i8I-Ic-AVA" firstAttribute="leading" secondItem="TPV-xI-Bdv" secondAttribute="leadingMargin" id="2cu-Zc-W02"/>
                             <constraint firstItem="i8I-Ic-AVA" firstAttribute="top" secondItem="lPa-K4-1q2" secondAttribute="bottom" constant="8" id="4WI-AM-lmM"/>
-                            <constraint firstItem="lPa-K4-1q2" firstAttribute="top" secondItem="9U5-Fk-sbs" secondAttribute="bottom" constant="157" id="6cU-FB-93Q"/>
+                            <constraint firstItem="vMR-Dh-j4K" firstAttribute="leading" secondItem="TPV-xI-Bdv" secondAttribute="leadingMargin" id="4c9-A9-btd"/>
+                            <constraint firstItem="vMR-Dh-j4K" firstAttribute="top" secondItem="9U5-Fk-sbs" secondAttribute="bottom" constant="120" id="5aD-Nw-Cya"/>
                             <constraint firstItem="Gzw-cg-SAq" firstAttribute="leading" secondItem="TPV-xI-Bdv" secondAttribute="leadingMargin" id="AjB-v6-jlW"/>
+                            <constraint firstItem="3lD-ny-Y7n" firstAttribute="trailing" secondItem="TPV-xI-Bdv" secondAttribute="trailingMargin" id="FWl-Qf-GDf"/>
                             <constraint firstItem="NE2-Lt-cu0" firstAttribute="leading" secondItem="TPV-xI-Bdv" secondAttribute="leadingMargin" id="JiN-WD-N8u"/>
+                            <constraint firstItem="3lD-ny-Y7n" firstAttribute="top" secondItem="vMR-Dh-j4K" secondAttribute="bottom" constant="8" id="KcO-g1-w7I"/>
                             <constraint firstItem="0RZ-4Z-j5x" firstAttribute="top" secondItem="NE2-Lt-cu0" secondAttribute="bottom" constant="16" id="L56-18-qMv"/>
                             <constraint firstItem="lPa-K4-1q2" firstAttribute="leading" secondItem="TPV-xI-Bdv" secondAttribute="leadingMargin" id="Oba-JV-Brt"/>
                             <constraint firstItem="Gzw-cg-SAq" firstAttribute="top" secondItem="i8I-Ic-AVA" secondAttribute="bottom" constant="16" id="Slu-ks-5pW"/>
+                            <constraint firstItem="vMR-Dh-j4K" firstAttribute="trailing" secondItem="TPV-xI-Bdv" secondAttribute="trailingMargin" id="UK6-6s-pnS"/>
                             <constraint firstItem="NE2-Lt-cu0" firstAttribute="trailing" secondItem="TPV-xI-Bdv" secondAttribute="trailingMargin" id="Uwv-ab-DOM"/>
                             <constraint firstItem="i8I-Ic-AVA" firstAttribute="trailing" secondItem="TPV-xI-Bdv" secondAttribute="trailingMargin" id="a55-B7-Z5F"/>
                             <constraint firstItem="NE2-Lt-cu0" firstAttribute="top" secondItem="Gzw-cg-SAq" secondAttribute="bottom" constant="8" id="cfk-kt-nmW"/>
                             <constraint firstItem="0RZ-4Z-j5x" firstAttribute="trailing" secondItem="TPV-xI-Bdv" secondAttribute="trailingMargin" id="fHv-rw-Uub"/>
                             <constraint firstItem="lPa-K4-1q2" firstAttribute="trailing" secondItem="TPV-xI-Bdv" secondAttribute="trailingMargin" id="h96-fe-YpX"/>
+                            <constraint firstItem="3lD-ny-Y7n" firstAttribute="leading" secondItem="TPV-xI-Bdv" secondAttribute="leadingMargin" id="nlh-0u-T9Y"/>
+                            <constraint firstItem="lPa-K4-1q2" firstAttribute="top" secondItem="3lD-ny-Y7n" secondAttribute="bottom" constant="16" id="u6J-pR-F0Z"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="phoneNum" destination="NE2-Lt-cu0" id="OVd-7Y-bdy"/>
                         <outlet property="twitterID" destination="i8I-Ic-AVA" id="rzA-9D-3wx"/>
+                        <outlet property="youngScreenName" destination="3lD-ny-Y7n" id="HEl-JB-3ii"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iuo-Yh-OpC" userLabel="First Responder" sceneMemberID="firstResponder"/>

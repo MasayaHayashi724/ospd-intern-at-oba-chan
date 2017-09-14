@@ -13,6 +13,7 @@ class ViewController: UIViewController {
 
     private let host = "https://atobachan-team2ospd.c9users.io"
     
+    @IBOutlet weak var youngScreenName: UITextField!
     @IBOutlet weak var twitterID: UITextField!
     @IBOutlet weak var phoneNum: UITextField!
 
@@ -30,11 +31,12 @@ class ViewController: UIViewController {
     }
 
     private func postInfoToDB() {
-        guard let screenName = twitterID.text else { return }
+        guard let oldScreenName = twitterID.text else { return }
+        guard let youngScreenName = youngScreenName.text else { return }
         guard let email = phoneNum.text else { return }
-        guard !screenName.isEmpty && !email.isEmpty else { return }
+        guard !oldScreenName.isEmpty && !youngScreenName.isEmpty && !email.isEmpty else { return }
         let encodedEmail = email.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        let url = URL(string: "\(host)/api/users?screen_name=\(screenName)&email=\(encodedEmail!)")!
+        let url = URL(string: "\(host)/api/users?old_screen_name=\(oldScreenName)&young_screen_name=\(youngScreenName)&email=\(encodedEmail!)")!
         var req = URLRequest(url: url)
         req.httpMethod = "POST"
         URLSession.shared.dataTask(with: req) { (data, res, err) in
@@ -48,8 +50,7 @@ class ViewController: UIViewController {
     }
 
     private func getUrlForConnectingTwitter() {
-        guard let screenName = twitterID.text else { return }
-        let url = URL(string: "\(host)/api/twitter?screen_name=\(screenName)")!
+        let url = URL(string: "\(host)/api/twitter")!
         let req = URLRequest(url: url)
         URLSession.shared.dataTask(with: req) { (data, res, err) in
             if let err = err {
