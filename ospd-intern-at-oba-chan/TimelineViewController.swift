@@ -16,6 +16,7 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     private let host = "https://atobachan-team2ospd.c9users.io"
     
     @IBOutlet weak var timelineTableView: UITableView!
+    @IBOutlet weak var takePhotoButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var accountStore = ACAccountStore()
@@ -30,6 +31,10 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        takePhotoButton.layer.shadowRadius = 5
+        takePhotoButton.layer.shadowOpacity = 0.3
+        takePhotoButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+        takePhotoButton.layer.cornerRadius = 20
         selectTwitterAccount()
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(getTimeline), for: .valueChanged)

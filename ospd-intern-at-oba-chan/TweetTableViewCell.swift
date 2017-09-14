@@ -18,6 +18,8 @@ class TweetTableViewCell: UITableViewCell {
         iconImageView.load(from: tweet.iconImageUrl)
         userNameLabel.text = tweet.userName
         pictureImageView.load(from: tweet.imageUrl)
+        iconImageView.layer.cornerRadius = iconImageView.frame.height / 2
+        iconImageView.clipsToBounds = true
     }
 
     override func awakeFromNib() {
