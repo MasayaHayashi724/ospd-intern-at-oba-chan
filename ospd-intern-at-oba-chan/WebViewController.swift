@@ -13,7 +13,8 @@ class WebViewController: UIViewController {
     @IBOutlet weak var webView: UIWebView!
 
     var url: URL?
-    var twitterID: String?
+    var oldScreenName: String?
+    var youngScreenName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,8 @@ class WebViewController: UIViewController {
     @IBAction func doneButtonTapped(_ sender: Any) {
         let sb = UIStoryboard(name: "Timeline", bundle: nil)
         let vc = sb.instantiateInitialViewController() as! TimelineViewController
-        vc.twitterID = twitterID
+        vc.oldScreenName = oldScreenName
+        vc.youngScreenName = youngScreenName
         self.present(vc, animated: true, completion: nil)
     }
 

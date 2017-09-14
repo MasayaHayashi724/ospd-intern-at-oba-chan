@@ -65,11 +65,13 @@ class ViewController: UIViewController {
     }
 
     private func moveToTwitterConnectionVC(url: URL) {
-        guard let twitterID = twitterID.text else { return }
+        guard let oldScreenName = twitterID.text else { return }
+        guard let youngScreenName = youngScreenName.text else { return }
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "TwitterConnection") as! TwitterConnectionViewController
         vc.twitterConnectionUrl = url
-        vc.twitterID = twitterID
+        vc.oldScreenName = oldScreenName
+        vc.youngScreenName = youngScreenName
         self.present(vc, animated: true, completion: nil)
     }
 
