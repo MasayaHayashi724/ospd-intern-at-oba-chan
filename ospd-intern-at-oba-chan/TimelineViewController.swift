@@ -12,6 +12,8 @@ import Accounts
 import SwiftyJSON
 
 class TimelineViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+
+    private let host = "https://atobachan-team2ospd.c9users.io"
     
     @IBOutlet weak var timelineTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -19,6 +21,10 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
     var accountStore = ACAccountStore()
     var twitterAccount: ACAccount?
     var tweets = [Tweet]()
+    var oldScreenName: String?
+    var youngScreenName: String?
+
+    var isObachan: Bool = false
 
     var refreshControl: UIRefreshControl!
     
@@ -29,9 +35,8 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
         refreshControl.addTarget(self, action: #selector(getTimeline), for: .valueChanged)
         timelineTableView.addSubview(refreshControl)
         activityIndicator.hidesWhenStopped = true
-        // TODO: 若者のアクセストークンを使ってタイムライン取得してtweetsにくっつける
     }
-    
+
     private func selectTwitterAccount() {
         let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
         
@@ -62,6 +67,9 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
         for account in accounts {
             alert.addAction(UIAlertAction(title: account.username, style: .default, handler: { _ in
                 self.twitterAccount = account
+                if self.isObachan {
+                    self.followWakamono()
+                }
                 self.getTimeline()
             }))
         }
@@ -70,9 +78,27 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
         
         self.present(alert, animated: true, completion: nil)
     }
+
+    func followWakamono() {
+        guard let youngScreenName = youngScreenName else { return }
+        let url = URL(string: "https://api.twitter.com/1.1/friendships/create.json")
+        let params = ["screen_name": youngScreenName]
+        guard let req = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .POST, url: url, parameters: params) else { return }
+        req.account = twitterAccount
+        req.perform { (data, res, err) in
+            if let err = err {
+                print(err)
+                return
+            }
+            guard let data = data else { return }
+            let json = JSON(data: data)
+            print(json)
+            self.getTimeline()
+        }
+    }
     
     func getTimeline() {
-        let url = URL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json")!
+        let url = URL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")!
         
         guard let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .GET, url: url, parameters: nil) else { return }
         
@@ -100,7 +126,7 @@ class TimelineViewController: UIViewController, UIImagePickerControllerDelegate,
             }
         }
     }
-    
+
     @IBAction func takePhotoButtonTapped(_ sender: Any) {
         let sourceType = UIImagePickerControllerSourceType.camera
         if UIImagePickerController.isSourceTypeAvailable(sourceType) {

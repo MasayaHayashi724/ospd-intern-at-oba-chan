@@ -13,7 +13,7 @@
         <!--Timeline View Controller-->
         <scene sceneID="sKi-zY-ZlZ">
             <objects>
-                <viewController id="RPr-eE-F0W" customClass="TimelineViewController" customModule="ospd_intern_at_oba_chan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Timeline" id="RPr-eE-F0W" customClass="TimelineViewController" customModule="ospd_intern_at_oba_chan" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wBb-Yd-fYQ"/>
                         <viewControllerLayoutGuide type="bottom" id="dho-82-Gh8"/>
