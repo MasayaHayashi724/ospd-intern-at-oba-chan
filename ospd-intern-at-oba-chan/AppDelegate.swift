@@ -14,21 +14,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    var  token: String?
-    
-    
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         print(url.query!)
         //アクセストークンを受取りTimelineに画面遷移
 
         if url.query == "" {
-            token = url.query
+            let token = url.query
             //windowを生成
             self.window = UIWindow(frame: UIScreen.main.bounds)
             //Storyboardを指定
             let storyboard = UIStoryboard(name: "Timeline", bundle: nil)
             //Viewcontrollerを指定
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "Timeline")
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "Timeline") as! TimelineViewController
             //rootViewControllerに入れる
             self.window?.rootViewController = initialViewController
             //表示
